@@ -9,14 +9,12 @@ class Test { //Класс - Тест
         this.answer2 = answer2;   // второй ответ для вывода
     }
     CreateTest(){
-        document.getElementById("question").innerHTML = this.number1 + "+" + this.number2 + "=  ?"; // выводим вопрос
+        document.getElementById("question").innerHTML = this.number1 + "+" + this.number2 + "="; // выводим вопрос
         this.sum = this.number1+this.number2;                                 // считаем сумму чисел
         this.ArrayAnswer.push(this.sum,this.answer1,this.answer2);            // заполняем массив
         RandomElementArray(this.ArrayAnswer);                                 // вызов функции на рандом элементов массива (меняем местами)
-        console.log(this.ArrayAnswer);
         for (let i = 0; i <  this.ArrayAnswer.length; i++) {                  // выводим варианты ответов
-           console.log(this.ArrayAnswer[i] );
-           document.getElementById("answers").innerHTML += "<div class='col'><button class='but'>"+ this.ArrayAnswer[i] + "</button></div>";
+           document.getElementById("answers").innerHTML += "<div class='col'><button class='buttons_answers'>"+ this.ArrayAnswer[i] + "</button></div>";
          }
 
     }
