@@ -22,25 +22,35 @@
             </div>
         </div>
         <div id="time">
-            <span >Время:</span> <span id="timer">10</span>
+            <span >Время:</span> <span id="timer"></span>
         </div>
-        <div id="question"></div>
+        <div id="test">
+            <span id="question"></span> <span id="current_answer">?</span>
+        </div>
+
         <div class="row" id="answers"></div>
 
-
-        <div class="row score_and_next">
+        <div class="row score_and_next_question">
             <div class="col-8">
                 <div id="score"></div>
             </div>
             <div class="col">
-                <button id="next">&#171;Далее&#187;</button>
+                <button id="next_question">&#171;Далее&#187;</button>
             </div>
         </div>
+       <button id="finish">Завершить</button>
 
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Игра приостановлена!</p>
+            </div>
+        </div>
+        <div id="myModal2" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Игра окончена!</p>
+                <div id="sum_score"></div>
             </div>
         </div>
 
@@ -59,34 +69,42 @@
     }
     .container .container{height: 20vh;}
     button{font-size: 1.35rem;cursor: pointer;}
-    p,#score{font-size: 1.8rem;}
-    span{
+    p,#score,#sum_score{font-size: 1.8rem;}
+    #time{
         font-style: italic;
         font-size: 2.5rem;
     }
-    #question{
+    #test{
         font-size: 5rem;
         padding-top: 5%;
         text-align: center;
     }
+    #current_answer{
+        display: none;
+    }
     h1,p{text-align: center;}
     #start{font-size: 1.8rem;}
     #stop{display: block;}
-    #return,#stop,#time,#next{
+    #return,#stop,#time,#next_question{
         display: none;
     }
-    .score_and_next{
+    .score_and_next_question{
         margin-top: 15vh !important;
     }
     #start{
         display: block;
     }
-    #start,#time{
+    #start,#time,#finish{
         margin-left: auto;
         margin-right: auto
     }
+    #finish{
+        display: none;
+        margin-top: 5vh !important;
+        background: green;
+    }
     #time{width: 20%;}
-    #stop,#next{margin-left: auto;}
+    #stop,#next_question{margin-left: auto;}
     .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
