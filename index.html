@@ -4,32 +4,71 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Kurale&family=Marck+Script&display=swap" rel="stylesheet"></head>
 <body>
 <div class="container">
-    <div class="container" id="game">
-        <h1>Тренировка на сложение больших чисел на время</h1>
+    <h1 id="name_game">Тренировочный тест по Математике на время</h1>
+    <div class="row" id="menu">
+        <div class="col">
+            <div class="place_for_test">
+                <div class="name_test">
+                    <h2>Сложение</h2>
+                </div>
+                <div class="description_test">
+                    <span class="numeric1"></span><span> + </span><span class="numeric2"></span>
+                    <button id="addition">Начать тест</button>
+                </div>
+            </div>
+            <div class="place_for_test">
+                <div class="name_test">
+                    <h2>Умножение</h2>
+                </div>
+                <div class="description_test">
+                    <span class="numeric1"></span> <span> ∙ </span><span class="numeric2"></span>
+                    <button id="multiplication">Начать тест</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="place_for_test">
+                <div class="name_test">
+                    <h2>Вычитание</h2>
+                </div>
+                <div class="description_test">
+                    <span class="numeric1"></span> <span> - </span><span class="numeric2"></span>
+                    <button id="subtraction">Начать тест</button>
+                </div>
+            </div>
+            <div class="place_for_test">
+                <div class="name_test">
+                    <h2>Деление</h2>
+                </div>
+                <div class="description_test">
+                    <span class="numeric1"></span> <span> : </span><span class="numeric2"></span>
+                    <button id="division">Начать тест</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <button id="start">Начать игру</button>
-
     <div id="playing_field">
-        <div class="row">
+        <div class="row buttons_return_and_stop">
             <div class="col">
-                <button id="return">&#171;Возврат&#187;</button>
+                <button id="return_game">&#171;Возврат&#187;</button>
             </div>
             <div class="col">
-                <button id="stop">&#171;Остановить&#187;</button>
+                <button id="stop_game">&#171;Остановить&#187;</button>
             </div>
         </div>
         <div id="time">
             <span >Время:</span> <span id="timer"></span>
         </div>
         <div id="test">
-            <span id="question"></span> <span id="current_answer">?</span>
+            <span id="question"></span> <span id="selected_answer">?</span>
         </div>
-
-        <div class="row" id="answers"></div>
-
+        <div class="row" id="answers">
+        </div>
         <div class="row score_and_next_question">
             <div class="col-8">
                 <div id="score"></div>
@@ -38,22 +77,20 @@
                 <button id="next_question">&#171;Далее&#187;</button>
             </div>
         </div>
-       <button id="finish">Завершить</button>
-
-        <div id="myModal" class="modal">
+       <button id="finish">&#171;Завершить&#187;</button>
+       <div id="ModalWindowStop" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Игра приостановлена!</p>
+                <p id="text">Игра приостановлена!</p>
             </div>
         </div>
-        <div id="myModal2" class="modal">
+       <div id="ModalWindowEnd" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Игра окончена!</p>
-                <div id="sum_score"></div>
+                <p>Игра завершена!</p>
+                <p id="sum_score"></p>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -63,48 +100,167 @@
 <style>
     .container{
         margin-top: 5rem;
-        padding: 15px !important;
-        height: 70vh;
-        background: rgba(211, 232, 232, 0.9);
+        padding: 3%  !important;
+        background: rgba(211, 232, 232, 0.7);
+        height: 80vh !important;
     }
-    .container .container{height: 20vh;}
-    button{font-size: 1.35rem;cursor: pointer;}
-    p,#score,#sum_score{font-size: 1.8rem;}
+    .container,.place_for_test{
+        box-shadow: 0 2px 8px black,
+        inset 0 1px rgba(255,255,255,0.15),
+        inset 0 10px rgba(255,255,255,0.1),
+        inset 0 10px 20px rgba(255,255,255,0.15),
+        inset 0 -15px 30px rgba(0,0,0,0.2);
+    }
+    button{
+        font-size: 1.35rem;
+        cursor: pointer;
+    }
+    h1{
+        text-align: center;
+        font-weight: 700;
+        font-family: 'EB Garamond', serif;
+        font-size: 3.25rem !important;
+    }
+    h2{
+        text-align: center;
+        padding: 5px 0;
+        font-size: 3rem !important;
+        margin-bottom: 0 !important;
+        font-family: 'Marck Script', cursive;
+    }
+    .place_for_test{
+        margin: 30px 0;
+        padding: 2% 2% 5% 2%;
+    }
+    .place_for_test:hover{
+        box-shadow: 0 4px 15px black;
+    }
+    .col:nth-child(1) .place_for_test:nth-child(1){
+        background: rgba(182, 255, 138, 0.5) !important;
+    }
+    .col:nth-child(1) .place_for_test:nth-child(2){
+        background: rgba(138, 211, 255, 0.5) !important;
+    }
+    .col:nth-child(2) .place_for_test:nth-child(1){
+        background: rgba(241, 186, 186, 0.5) !important;
+    }
+    .col:nth-child(2) .place_for_test:nth-child(2){
+        background: rgba(255, 186, 59, 0.5) !important;
+    }
+    .description_test{
+        background: rgba(255, 255, 255, 0.82) !important;
+        font-size: 2.8rem;
+        font-family: 'Kurale', serif;
+        font-weight: 400;
+        text-align: center;
+        margin: 0 2%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.85),
+        inset 0 1px rgba(255,255,255,0.3),
+        inset 0 10px rgba(255,255,255,0.2),
+        inset 0 10px 20px rgba(255, 255, 255, 0.25),
+        inset 0 -15px 30px rgba(10, 10, 10, 0.3);
+    }
+    #addition,#subtraction,#multiplication,#division{
+        font-weight: 700;
+        font-family: 'EB Garamond', serif;
+        display: block;
+        font-size: 1.8rem;
+        width:100%;
+        background: rgba(204, 204, 204, 0.48);
+        text-align:center;
+        color: black;
+        text-shadow: 0 2px 30px white ;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 1px 1px 8px black;
+    }
+    #playing_field{
+        display: none;
+    }
+    #playing_field button{
+        background: rgba(232, 255, 255, 0.35);
+        font-family: 'EB Garamond', serif;
+        font-size: 1.8rem;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 1px 1px 8px black;
+        width: 200px;
+        padding: 1.5%;
+    }
+    #playing_field button:hover{
+        background: rgba(232, 255, 255, 0.6);
+
+        border:  2px solid rgba(0, 0, 0, 0.65) !important;
+    }
+    .buttons_return_and_stop{
+        height: 2vh;
+    }
+    #timer{
+        color: #a022ce;
+    }
     #time{
         font-style: italic;
         font-size: 2.5rem;
+        width: 25%;
     }
     #test{
-        font-size: 5rem;
-        padding-top: 5%;
+        padding: .5%;
+        background: rgba(255, 255, 255, 0.82) !important;
+        font-family: 'Kurale', serif;
+        font-weight: 400;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.85);
+        font-size: 5.5rem;
+        margin: 4.25% auto;
+        width: 50%;
         text-align: center;
+        background: white;
     }
-    #current_answer{
-        display: none;
+    #answers,.score_and_next_question{
+        height: 4vh !important;
+        margin-top: 6% !important;
     }
-    h1,p{text-align: center;}
-    #start{font-size: 1.8rem;}
-    #stop{display: block;}
-    #return,#stop,#time,#next_question{
-        display: none;
+    .buttons_answers{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        width: 40% !important;
+        font-size: 3rem !important;
+        padding: 3% !important;
+        background: rgba(255, 255, 255, 0.82) !important;
+        font-family: 'Kurale', serif !important;
+        font-weight: 400;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.85) !important;
     }
-    .score_and_next_question{
-        margin-top: 15vh !important;
+    .buttons_answers:hover{
+        border:  2px solid rgba(0, 0, 0, 0.65) !important;
     }
-    #start{
+    #time,#finish{
+        margin-left: auto;
+        margin-right: auto;
         display: block;
     }
-    #start,#time,#finish{
-        margin-left: auto;
-        margin-right: auto
-    }
     #finish{
-        display: none;
         margin-top: 5vh !important;
-        background: green;
+        background: #a7c0db85 !important;
+        font-weight: bold;
     }
-    #time{width: 20%;}
-    #stop,#next_question{margin-left: auto;}
+    #finish:hover{
+        background: rgba(165, 201, 239, 0.5) !important;
+    }
+    #next_question{
+        display: none;
+    }
+    #stop_game{
+        display: block;
+    }
+    #stop_game,#next_question{
+        margin-left: auto;
+    }
+    p{text-align: center;}
+    p,#score,#sum_score{font-size: 1.8rem;}
+    .score_and_next_question{
+        margin-top: 12vh !important;
+    }
     .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
