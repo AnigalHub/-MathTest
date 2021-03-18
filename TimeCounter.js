@@ -1,25 +1,22 @@
 let timer = document.getElementById("timer");
-let modal_window = document.getElementById("myModal2"); // Модальное окно "Игра приостановлена"
+let modal_window_end = document.getElementById("ModalWindowEnd"); // Модальное окно "Игра завершена"
 
 class TimeСounter { //Класс - Счетчик времени (Таймер)
     constructor(defaultCount) {
-       // цифра от которой начинаем отсчет таймера
         this.currentInterval = null; // номер текущего таймера
     }
-
     StartTimeСounter(defaultCount) {  //метод запуска счетчика
-        this.count = defaultCount;
+        this.count = defaultCount;  // цифра от которой начинаем отсчет таймера
 
         if (this.currentInterval == null) {
             this.currentInterval = setInterval(() => {
                 if (this.count >= 0) {
                     timer.innerHTML =  this.count--;
                     if(this.count == -1){
-                        modal_window.style.display = "block"; // выводим сообщение
+                        modal_window_end.style.display = "block"; // выводим сообщение
                     }
                 }
             }, 1000)
-           //console.log('Запущен интервал под номером ' + this.currentInterval);
         }
     }
     StopTimeСounter(){ // метод остановки счетчика
@@ -31,7 +28,5 @@ class TimeСounter { //Класс - Счетчик времени (Таймер)
         }
         return this.count;
     }
-
-
 }
 module.exports = TimeСounter ;
