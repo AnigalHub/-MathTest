@@ -1,27 +1,27 @@
 const TimeСounter = require("./TimeCounter");
 const RandomNumber = require("./RandomNumber");
+const DisplayOfNumbersInMenu = require("./DisplayOfNumbersInMenu");
+
 const Test = require("./Test");
 let timeCounter = new TimeСounter();
-let test = new Test(RandomNumber(0,50),RandomNumber(1,50),RandomNumber(0,50),RandomNumber(0,50));
+let time = 60; // время таймера
+let test = new Test(RandomNumber(0,50),RandomNumber(1,50),RandomNumber(1,50),RandomNumber(1,50));
 let name_game = document.getElementById("name_game"); //название игры
-let start_game = document.getElementById('start');// "Сложение"
-let start_game2 = document.getElementById('start2');// "Вычитание"
-let start_game3 = document.getElementById('start3');// "Умножение"
-let start_game4 = document.getElementById('start4');// "Деление"
-let output_count = document.getElementById("score"); // баллы за один пример
-let stop_game = document.getElementById("stop"); // "Остановить"
-let return_game = document.getElementById('return'); // "Возврат" (на начало)
-let modal_window = document.getElementById("myModal"); // Модальное окно "Игра приостановлена"
+let menu = document.getElementById("menu"); // меню игры
 let playing_filed = document.getElementById("playing_field"); // игровое поле
-let timer = document.getElementById("time"); // таймер
-let time = 50 // время таймера
-let finish = document.getElementById("finish"); // "Завершить"
-let choice_answer = document.getElementById("current_answer"); //выбранный ответ
+let question = document.getElementById("question"); // Вопрос (Пример)
+let selected_answer = document.getElementById("selected_answer"); //выбранный ответ
+let answers = document.getElementById("answers"); // Ответы
+let output_count = document.getElementById("score"); // счетчик баллов (количество очков)
+let next_question = document.getElementById('next_question'); //"Далее"
+let modal_window_stop = document.getElementById("ModalWindowStop"); // Модальное окно "Игра приостановлена"
+let modal_window_end = document.getElementById("ModalWindowEnd"); // Модальное окно "Игра завершена"
+let output_sum_score = document.getElementById("sum_score"); //баллы за всю игру
 let sum_score = 0; //сумма баллов
 
 
 
-
+DisplayOfNumbersInMenu();//Вывод цифр в меню (для красоты, с рандомом)
 
 // Поиск верного ответа и Подсчет суммы баллов
 function SearchAnswersAndSumScore(count){
@@ -32,138 +32,133 @@ function SearchAnswersAndSumScore(count){
                 count++;
                 sum_score++;
                 output_count.innerHTML = "Ваш ответ верный, общее количество очков:" + count;
-                choice_answer.innerHTML = test.correct_answer;
-                choice_answer.style.color = "green";
+                selected_answer.innerHTML = test.correct_answer;
+                selected_answer.style.color = "green";
             }
             else if (document.getElementsByClassName("buttons_answers")[i].innerHTML == test.answer1){ // проверка первый непрвильный ответ
                 document.getElementsByClassName("buttons_answers")[i].style.background = "red";
-                choice_answer.innerHTML = test.answer1;
-                choice_answer.style.color = "red";
+                selected_answer.innerHTML = test.answer1;
+                selected_answer.style.color = "red";
                 output_count.innerHTML = "Ваш ответ неверный, общее количество очков:" + count;
             }
             else{                                                                                           // второй непрвильный ответ
                 document.getElementsByClassName("buttons_answers")[i].style.background = "red";
-                choice_answer.innerHTML = test.answer2;
-                choice_answer.style.color = "red";
+                selected_answer.innerHTML = test.answer2;
+                selected_answer.style.color = "red";
                 output_count.innerHTML = "Ваш ответ неверный, общее количество очков:" + count;
             }
-            document.getElementById("answers").innerHTML = null;
-            timeCounter.StopTimeСounter();
-            document.getElementById('next_question').style.display = "block";
+            answers.innerHTML = ""; // не выводим предыдущие ответы по прошлому вопросу (примеру)
+            timeCounter.StopTimeСounter(); // останавливаем время (таймер)
+            next_question.style.display = "block"; // выводим кнопку "Далее"
             return count;
         });
     }
-    document.getElementById("sum_score").innerHTML = "Ваши очки составили:" + sum_score;
+    output_sum_score.innerHTML = "Ваши очки составили:" + sum_score; // выводим сумму очков
 }
-
 //Начало игры
 function StartGame(){
     timeCounter.StartTimeСounter(time);// вызов таймера
-    document.getElementById('current_answer').style.display = "initial";
-    name_game.style.display = "none";      // убираем название игры
-    start_game.style.display = "none";     // убираем кнопку - "начать игру"
-    start_game2.style.display = "none";     // убираем кнопку - "начать игру"
-    start_game3.style.display = "none";     // убираем кнопку - "начать игру"
-    start_game4.style.display = "none";     // убираем кнопку - "начать игру"
-    playing_filed.style.display = "block"; // выводим поле игры
-    stop_game.style.display = "block";      // выводим кнопки управления
-    return_game.style.display = "block";    // "Возврат" и "Остановить"
-    finish.style.display = "block";    // "Завершить"
-    timer.style.display = "block";    // выводим таймер
+    selected_answer.style.display = "initial";
+    name_game.style.display = "none";       // убираем название игры
+    menu.style.display = "none"; // убираем меню
+    playing_filed.style.display = "block";  // выводим поле игры
+
 }
-function Discharge() { // Сброс
-    name_game.style.display = "flex";         // возврат на начало
-    start_game.style.display = "block";       // выводим название игры и кнопку "начать игру"
-    start_game2.style.display = "block";       // выводим название игры и кнопку "начать игру"
-    start_game3.style.display = "block";       // выводим название игры и кнопку "начать игру"
-    start_game4.style.display = "block";       // выводим название игры и кнопку "начать игру"
+// Сброс
+function Discharge() {
+    name_game.style.display = "block";         // возврат на начало - выводим название
+    menu.style.display = "flex";              // выводим меню
     playing_filed.style.display = "none";     // прячем игровое поле
     timeCounter.StartTimeСounter(time);
-    document.getElementById("answers").innerHTML = " ";
+    answers.innerHTML = "";
     test = new Test(RandomNumber(1,50),RandomNumber(1,50),RandomNumber(1,50),RandomNumber(1,50));
-    document.getElementById("score").innerHTML = " ";
-    document.getElementById("current_answer").innerHTML = "?";
+    output_count.innerHTML = " ";
+    selected_answer.innerHTML = "?";
     sum_score = 0;
-    document.getElementById("myModal2").style.display = "none";
-
+    modal_window_end.style.display = "none";
+    next_question.style.display = "none";
+    DisplayOfNumbersInMenu();
+}
+//Выбор следующего вопроса
+function ChoosingNextQuestion(){
+    answers.innerHTML = "";
+    output_count.innerHTML = "";
+    selected_answer.innerHTML = "?";
+    selected_answer.style.color = "black";
+    
+    if (question.innerHTML.includes("-") == true){
+        test.CreateTest("-");
+    }
+    if (question.innerHTML.includes("+") == true){
+        test.CreateTest("+");
+    }
+    if (question.innerHTML.includes("∙") == true){
+        test.CreateTest("*");
+    }
+    if (question.innerHTML.includes(":") == true){
+        test.CreateTest(":");
+    }
 }
 
 //Сложение
-document.getElementById('start').addEventListener('click', function() {
+document.getElementById('addition').addEventListener('click', function() {
     StartGame();
-    test.CreateTest("+");                   // вызов вопроса на сложение со списком ответов
-    SearchAnswersAndSumScore(sum_score);          //вызов функции на поиск ответа и суммы баллов
+    test.CreateTest("+");                                    // вызов вопроса на сложение со списком ответов
+    SearchAnswersAndSumScore(sum_score);                            //вызов функции на поиск ответа и суммы баллов
 });
 //Вычитание
-document.getElementById('start2').addEventListener('click', function() {
-    StartGame();
-    test.CreateTest("-");                   // вызов вопроса на вычитание со списком ответов
-    SearchAnswersAndSumScore(sum_score);          //вызов функции на поиск ответа и суммы баллов
+document.getElementById('subtraction').addEventListener('click', function() {
+    StartGame();                                                    //вызов функции на старт игры
+    test.CreateTest("-");                                     // вызов вопроса на вычитание со списком ответов
+    SearchAnswersAndSumScore(sum_score);                            //вызов функции на поиск ответа и суммы баллов
 });
 //Умножение
-document.getElementById('start3').addEventListener('click', function() {
-    StartGame();
-    test.CreateTest("*");                   // вызов вопроса на умножение со списком ответов
-    SearchAnswersAndSumScore(sum_score);          //вызов функции на поиск ответа и суммы баллов
+document.getElementById('multiplication').addEventListener('click', function() {
+    StartGame();                                                     // вызов функции на старт игры
+    test.CreateTest("*");                                     // вызов вопроса на умножение со списком ответов
+    SearchAnswersAndSumScore(sum_score);                            // вызов функции на поиск ответа и суммы баллов
 });
 //Деление
-document.getElementById('start4').addEventListener('click', function() {
-    StartGame();
-    test.CreateTest(":");                   // вызов вопроса на деление со списком ответов
-    SearchAnswersAndSumScore(sum_score);          //вызов функции на поиск ответа и суммы баллов
+document.getElementById('division').addEventListener('click', function() {
+    StartGame();                                                     // вызов функции на старт игры
+    test.CreateTest(":");                                      // вызов вопроса на деление со списком ответов
+    SearchAnswersAndSumScore(sum_score);                             // вызов функции на поиск ответа и суммы баллов
 });
 
 //Далее
 document.getElementById('next_question').addEventListener('click', function() {
-    document.getElementById("answers").innerHTML = " ";
-    choice_answer.innerHTML = "?";
-    choice_answer.style.color = "black";
     test = new Test(RandomNumber(0,50),RandomNumber(1,50),RandomNumber(0,50),RandomNumber(0,50));
-    timeCounter.StartTimeСounter(timeCounter.StopTimeСounter()); // вызов метода на продолжение  таймера с момента останова
-
-    if (document.getElementById("question").innerHTML.includes("-") == true){
-        test.CreateTest("-");
-    }
-    if (document.getElementById("question").innerHTML.includes("+") == true){
-        test.CreateTest("+");
-    }
-    if (document.getElementById("question").innerHTML.includes("∙") == true){
-        test.CreateTest("*");
-    }
-    if (document.getElementById("question").innerHTML.includes(":") == true){
-        test.CreateTest(":");
-    }
-    SearchAnswersAndSumScore(sum_score); //вызов функции на поиск ответа и суммы баллов
-
+    timeCounter.StartTimeСounter(timeCounter.StopTimeСounter());       // вызов метода на продолжение  таймера с момента останова
+    ChoosingNextQuestion();                                            // вызов функции на выбор следующего вопроса
+    SearchAnswersAndSumScore(sum_score);                               // вызов функции на поиск ответа и суммы баллов
 });
 
 //Остановить
-document.getElementById("stop").addEventListener('click', function() {
-    timeCounter.StopTimeСounter();         // вызов метода на остановку таймера
-    modal_window.style.display = "block"; // выводим сообщение об остановке игры
+document.getElementById("stop_game").addEventListener('click', function() {
+    timeCounter.StopTimeСounter();                                      // вызов метода на остановку таймера
+    modal_window_stop.style.display = "block";                          // выводим сообщение об остановке игры
 });
 
 //Продолжить
 document.getElementsByClassName("close")[0].addEventListener('click', function() {
     timeCounter.StartTimeСounter(timeCounter.StopTimeСounter());        // вызов метода на продолжение  таймера с момента останова
-    modal_window.style.display = "none"; // убираем сообщение об остановке игры
+    modal_window_stop.style.display = "none";                           // убираем сообщение об остановке игры
 });
 //Закрыть модальное окно с подсчетом очков за игру
 document.getElementsByClassName("close")[1].addEventListener('click', function() {
-    modal_window.style.display = "none"; // убираем сообщение об окончании игры
-    Discharge();
+    modal_window_stop.style.display = "none";                           // убираем сообщение об окончании игры
+    Discharge();                                                        // вызов функции на сброс игры
 });
 //Досрочно завершить - "Завершить"
 document.getElementById('finish').addEventListener('click', function() {
-    document.getElementById("myModal2").style.display = "block";
-    timeCounter.StopTimeСounter();
-    document.getElementById("sum_score").innerHTML = "Ваши очки составили:" + sum_score;
+    modal_window_end.style.display = "block";                          // выводим сообщение об окончании игры
+    timeCounter.StopTimeСounter();                                     // вызов метода на остановку таймера
+    output_sum_score.innerHTML = "Ваши очки составили:" + sum_score;   // выводим сумму очков
 });
 
-
 //Выйти из игры - "Возврат"
-document.getElementById('return').addEventListener('click', function() {
-   Discharge();
+document.getElementById('return_game').addEventListener('click', function() {
+   Discharge();                                                        //вызов функции на сброс игры
 });
 
 
