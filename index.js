@@ -35,18 +35,13 @@ function SearchAnswersAndSumScore(count){
                 selected_answer.innerHTML = test.correct_answer;
                 selected_answer.style.color = "green";
             }
-            else if (document.getElementsByClassName("buttons_answers")[i].innerHTML == test.answer1){ // проверка первый непрвильный ответ
+            else { //проверка первый непрвильный ответ
                 document.getElementsByClassName("buttons_answers")[i].style.background = "red";
-                selected_answer.innerHTML = test.answer1;
+                selected_answer.innerHTML = document.getElementsByClassName("buttons_answers")[i].innerHTML;
                 selected_answer.style.color = "red";
                 output_count.innerHTML = "Ваш ответ неверный, общее количество очков:" + count;
             }
-            else{                                                                                           // второй непрвильный ответ
-                document.getElementsByClassName("buttons_answers")[i].style.background = "red";
-                selected_answer.innerHTML = test.answer2;
-                selected_answer.style.color = "red";
-                output_count.innerHTML = "Ваш ответ неверный, общее количество очков:" + count;
-            }
+
             answers.innerHTML = ""; // не выводим предыдущие ответы по прошлому вопросу (примеру)
             timeCounter.StopTimeСounter(); // останавливаем время (таймер)
             next_question.style.display = "block"; // выводим кнопку "Далее"
