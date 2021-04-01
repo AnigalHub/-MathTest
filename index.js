@@ -31,7 +31,7 @@ function SearchAnswersAndSumScore(count){
                 document.getElementsByClassName("buttons_answers")[i].style.background = "green";
                 count++;
                 sum_score++;
-                output_count.innerHTML = "Ваш ответ верный, общее количество очков:" + count;
+                output_count.innerHTML = "Ваш ответ" + "<span style='color:green; font-weight: bold;'>" + " верный" + "</span>" +", общее количество очков: " + "<span style='font-weight: bold;'>"+ count + "</span>";
                 selected_answer.innerHTML = test.correct_answer;
                 selected_answer.style.color = "green";
             }
@@ -39,7 +39,7 @@ function SearchAnswersAndSumScore(count){
                 document.getElementsByClassName("buttons_answers")[i].style.background = "red";
                 selected_answer.innerHTML = document.getElementsByClassName("buttons_answers")[i].innerHTML;
                 selected_answer.style.color = "red";
-                output_count.innerHTML = "Ваш ответ неверный, общее количество очков:" + count;
+                output_count.innerHTML = "Ваш ответ" + "<span style='color:red;font-weight: bold;'>" + " неверный" + "</span>" +", общее количество очков: "  +"<span style='font-weight: bold;'>" +  count  + "</span>";
             }
 
             answers.innerHTML = ""; // не выводим предыдущие ответы по прошлому вопросу (примеру)
@@ -69,6 +69,7 @@ function Discharge() {
     test = new Test(RandomNumber(1,50),RandomNumber(1,50),RandomNumber(1,50),RandomNumber(1,50));
     output_count.innerHTML = " ";
     selected_answer.innerHTML = "?";
+    selected_answer.style.color = "black";
     sum_score = 0;
     modal_window_end.style.display = "none";
     next_question.style.display = "none";
