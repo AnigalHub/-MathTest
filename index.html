@@ -67,8 +67,7 @@
         <div id="test">
             <span id="question"></span> <span id="selected_answer">?</span>
         </div>
-        <div class="row" id="answers">
-        </div>
+        <div class="row" id="answers"></div>
         <div class="row score_and_next_question">
             <div class="col-8">
                 <div id="score"></div>
@@ -98,12 +97,14 @@
 </body>
 </html>
 <style>
+    /*контейнер на блоки посередине экрана*/
     .container{
         margin-top: 5rem;
         padding: 3%  !important;
         background: rgba(211, 232, 232, 0.7);
         height: 80vh !important;
     }
+    /*контейнер на блоки посередине экрана, блоки под выбор игры (сложение, вычитание, деление, умножение)*/
     .container,.place_for_test{
         box-shadow: 0 2px 8px black,
         inset 0 1px rgba(255,255,255,0.15),
@@ -111,16 +112,19 @@
         inset 0 10px 20px rgba(255,255,255,0.15),
         inset 0 -15px 30px rgba(0,0,0,0.2);
     }
+    /*кнопки - "Начать тест"*/
     button{
         font-size: 1.35rem;
         cursor: pointer;
     }
+    /*заголовок (название игры - Тренировочный тест по Математике на время)*/
     h1{
         text-align: center;
         font-weight: 700;
         font-family: 'EB Garamond', serif;
         font-size: 3.25rem !important;
     }
+    /*заголовок (сложение, вычитание, деление, умножение)*/
     h2{
         text-align: center;
         padding: 5px 0;
@@ -128,25 +132,19 @@
         margin-bottom: 0 !important;
         font-family: 'Marck Script', cursive;
     }
+    /*блоки под выбор игры (сложение, вычитание, деление, умножение)*/
     .place_for_test{
         margin: 30px 0;
         padding: 2% 2% 5% 2%;
     }
-    .place_for_test:hover{
-        box-shadow: 0 4px 15px black;
-    }
-    .col:nth-child(1) .place_for_test:nth-child(1){
-        background: rgba(182, 255, 138, 0.5) !important;
-    }
-    .col:nth-child(1) .place_for_test:nth-child(2){
-        background: rgba(138, 211, 255, 0.5) !important;
-    }
-    .col:nth-child(2) .place_for_test:nth-child(1){
-        background: rgba(241, 186, 186, 0.5) !important;
-    }
-    .col:nth-child(2) .place_for_test:nth-child(2){
-        background: rgba(255, 186, 59, 0.5) !important;
-    }
+    /*блоки под выбор игры (сложение, вычитание, деление, умножение) при наведении*/
+    .place_for_test:hover{box-shadow: 0 4px 15px black;}
+    /*блоки с игрыми на сложение, вычитание, деление, умножение*/
+    .col:nth-child(1) .place_for_test:nth-child(1){background: rgba(182, 255, 138, 0.5) !important;}
+    .col:nth-child(1) .place_for_test:nth-child(2){background: rgba(138, 211, 255, 0.5) !important;}
+    .col:nth-child(2) .place_for_test:nth-child(1){background: rgba(241, 186, 186, 0.5) !important;}
+    .col:nth-child(2) .place_for_test:nth-child(2){background: rgba(255, 186, 59, 0.5) !important;}
+    /*блок с описанием игры (пример и кнопка)*/
     .description_test{
         background: rgba(255, 255, 255, 0.82) !important;
         font-size: 2.8rem;
@@ -160,6 +158,7 @@
         inset 0 10px 20px rgba(255, 255, 255, 0.25),
         inset 0 -15px 30px rgba(10, 10, 10, 0.3);
     }
+    /*кнопки - "Начать тест" - на каждый тест своя*/
     #addition,#subtraction,#multiplication,#division{
         font-weight: 700;
         font-family: 'EB Garamond', serif;
@@ -174,9 +173,9 @@
         border-radius: 3px;
         box-shadow: 1px 1px 8px black;
     }
-    #playing_field{
-        display: none;
-    }
+    /*игровое поле с примером и кнопками вариантов ответа, остановить, возврат, финиш*/
+    #playing_field{display: none;}
+    /*кнопки игрового поля - варианты ответов, остановить, возврат, финиш*/
     #playing_field button{
         background: rgba(232, 255, 255, 0.35);
         font-family: 'EB Garamond', serif;
@@ -187,22 +186,22 @@
         width: 200px;
         padding: 1.5%;
     }
+    /*кнопки игрового поля при наведении- варианты ответов, остановить, возврат, финиш*/
     #playing_field button:hover{
         background: rgba(232, 255, 255, 0.6);
-
         border:  2px solid rgba(0, 0, 0, 0.65) !important;
     }
-    .buttons_return_and_stop{
-        height: 2vh;
-    }
-    #timer{
-        color: #a022ce;
-    }
+    /*кнопки - "Возврат" и "Остановить"*/
+    .buttons_return_and_stop{height: 2vh;}
+    /*место под счетчик времени*/
+    #timer{color: #a022ce;}
+    /*блок под фразу "Время:" и счетчик времени*/
     #time{
         font-style: italic;
         font-size: 2.5rem;
         width: 25%;
     }
+    /*блок под вопрос (пример)*/
     #test{
         padding: .5%;
         background: rgba(255, 255, 255, 0.82) !important;
@@ -215,10 +214,12 @@
         text-align: center;
         background: white;
     }
+    /*блок под ответы на вопрос (пример),блок на фразу - верно/неверно и кнопка "Далее"*/
     #answers,.score_and_next_question{
         height: 4vh !important;
         margin-top: 6% !important;
     }
+    /*кнопки - варианты ответов*/
     .buttons_answers{
         margin-left: auto;
         margin-right: auto;
@@ -231,49 +232,49 @@
         font-weight: 400;
         box-shadow: 0 2px 8px rgba(0,0,0,0.85) !important;
     }
-    .buttons_answers:hover{
-        border:  2px solid rgba(0, 0, 0, 0.65) !important;
-    }
+    /*кнопки - варианты ответов при наведении*/
+    .buttons_answers:hover{border:  2px solid rgba(0, 0, 0, 0.65) !important;}
+    /*блок под фразу "Время:" и счетчик времени, кнопка "Завершить"*/
     #time,#finish{
         margin-left: auto;
         margin-right: auto;
         display: block;
     }
+    /*кнопка "Завершить"*/
     #finish{
         margin-top: 5vh !important;
         background: #a7c0db85 !important;
         font-weight: bold;
     }
-    #finish:hover{
-        background: rgba(165, 201, 239, 0.5) !important;
-    }
-    #next_question{
-        display: none;
-    }
-    #stop_game{
-        display: block;
-    }
-    #stop_game,#next_question{
-        margin-left: auto;
-    }
+    /*кнопка "Завершить" при наведении*/
+    #finish:hover{background: rgba(165, 201, 239, 0.5) !important;}
+    /*кнопка - "Далее"*/
+    #next_question{display: none;}
+    /*кнопка - "Остановить"*/
+    #stop_game{display: block;}
+    /*кнопка - "Остановить", кнопка - "Далее"*/
+    #stop_game,#next_question{margin-left: auto;}
+    /*абзац*/
     p{text-align: center;}
+    /*абзац, блок с фразой верно/неверно и балламами, блок на вывод в модальном окне - суммарное количество баллов*/
     p,#score,#sum_score{font-size: 1.8rem;}
-    .score_and_next_question{
-        margin-top: 12vh !important;
-    }
+    /*блок на фразу - верно/неверно и кнопка "Далее"*/
+    .score_and_next_question{margin-top: 12vh !important;}
+    /*модальное окно*/
     .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 210px; /* Location of the box */
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 210px;
         left: 0;
         top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
     }
+    /*контент модального окна*/
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -281,14 +282,15 @@
         border: 1px solid #888;
         width: 55%;
     }
+    /*кнопка - "Х"*/
     .close {
         color: #aaaaaa;
         margin-left: auto;
         font-size: 28px;
         font-weight: bold;
     }
-    .close:hover,
-    .close:focus {
+    /*кнопка - "Х" - при наведении и в фокусе*/
+    .close:hover, .close:focus {
         color: #000;
         text-decoration: none;
         cursor: pointer;
