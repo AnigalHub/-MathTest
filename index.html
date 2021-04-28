@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Математический тренажер </title>
+    <link rel="icon" href="favicon.jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Kurale&family=Marck+Script&display=swap" rel="stylesheet"></head>
 <body>
@@ -68,6 +68,7 @@
             <span id="question"></span> <span id="selected_answer">?</span>
         </div>
         <div class="row" id="answers"></div>
+        <br><br><br>
         <div class="row score_and_next_question">
             <div class="col-8">
                 <div id="score"></div>
@@ -76,6 +77,7 @@
                 <button id="next_question">&#171;Далее&#187;</button>
             </div>
         </div>
+        <br><br><br>
        <button id="finish">&#171;Завершить&#187;</button>
        <div id="ModalWindowStop" class="modal">
             <div class="modal-content">
@@ -99,10 +101,11 @@
 <style>
     /*контейнер на блоки посередине экрана*/
     .container{
-        margin-top: 5rem;
+        margin-top: 3.5rem;
+        margin-bottom: 2rem;
         padding: 3%  !important;
         background: rgba(211, 232, 232, 0.7);
-        height: 80vh !important;
+        height: 50rem !important;
     }
     /*контейнер на блоки посередине экрана, блоки под выбор игры (сложение, вычитание, деление, умножение)*/
     .container,.place_for_test{
@@ -224,7 +227,7 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 40% !important;
+        width: 44% !important;
         font-size: 3rem !important;
         padding: 3% !important;
         background: rgba(255, 255, 255, 0.82) !important;
@@ -242,7 +245,7 @@
     }
     /*кнопка "Завершить"*/
     #finish{
-        margin-top: 5vh !important;
+        margin-bottom: 1vh;
         background: #a7c0db85 !important;
         font-weight: bold;
     }
@@ -258,8 +261,6 @@
     p{text-align: center;}
     /*абзац, блок с фразой верно/неверно и балламами, блок на вывод в модальном окне - суммарное количество баллов*/
     p,#score,#sum_score{font-size: 1.8rem;}
-    /*блок на фразу - верно/неверно и кнопка "Далее"*/
-    .score_and_next_question{margin-top: 12vh !important;}
     /*модальное окно*/
     .modal {
         display: none;
@@ -294,5 +295,37 @@
         color: #000;
         text-decoration: none;
         cursor: pointer;
+    }
+
+
+    /***************** АДАПТИВНОСТЬ ********************/
+    @media screen and (max-width: 992px) {
+        /*заголовок (название игры - Тренировочный тест по Математике на время),
+       заголовок (сложение, вычитание, деление, умножение)*/
+        h1,h2{font-size: 2.5rem !important;}
+        /*кнопки - "Начать тест" - на каждый тест своя*/
+        #addition,#subtraction,#multiplication,#division{font-size: 1.6rem;}
+        /*блок под выбор теста*/
+        #menu{flex-direction: column}
+        /*блоки по 2 варианта тесте (сложение и умножение/ вычитание и деление)*/
+        #menu .col{flex-basis: unset !important;}
+        /*контейнер на блоки посередине экрана*/
+        .container{height: 75rem !important;}
+        /*блок под фразу "Время:" и счетчик времени*/
+        #time{
+            width: 40% !important;
+            margin-top: 5%;
+            margin-bottom: 15%;
+        }
+        /*блок под вопрос (пример)*/
+        #test {
+            width: 65% !important;
+            font-size: 4.5rem !important;
+        }
+        /*кнопки - варианты ответов*/
+        .buttons_answers {
+            width: 75% !important;
+            margin-top: 35%;
+        }
     }
 </style>
