@@ -68,9 +68,9 @@
             <span id="question"></span> <span id="selected_answer">?</span>
         </div>
         <div class="row" id="answers"></div>
-        <br><br><br>
+        <br><br>
         <div class="row score_and_next_question">
-            <div class="col-8">
+            <div class="col-7">
                 <div id="score"></div>
             </div>
             <div class="col">
@@ -101,9 +101,10 @@
 <style>
     /*контейнер на блоки посередине экрана*/
     .container{
-        margin-top: 3.5rem;
+        margin-top: 4.5rem;
         margin-bottom: 2rem;
-        padding: 3%  !important;
+        width: 45%;
+        padding: 2% !important;
         background: rgba(211, 232, 232, 0.7);
         height: 35rem !important;
     }
@@ -124,6 +125,8 @@
     h1{
         text-align: center;
         font-weight: 700;
+        font-size: 2rem;
+        margin-top: 3%;
         font-family: 'EB Garamond', serif;
     }
     /*заголовок (сложение, вычитание, деление, умножение)*/
@@ -135,7 +138,7 @@
     }
     /*блоки под выбор игры (сложение, вычитание, деление, умножение)*/
     .place_for_test{
-        margin: 30px 0;
+        margin: 15px 0;
         padding: 2% 2% 5% 2%;
     }
     /*блоки под выбор игры (сложение, вычитание, деление, умножение) при наведении*/
@@ -148,7 +151,7 @@
     /*блок с описанием игры (пример и кнопка)*/
     .description_test{
         background: rgba(255, 255, 255, 0.82) !important;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-family: 'Kurale', serif;
         font-weight: 400;
         text-align: center;
@@ -164,7 +167,7 @@
         font-weight: 700;
         font-family: 'EB Garamond', serif;
         display: block;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         width:100%;
         background: rgba(204, 204, 204, 0.48);
         text-align:center;
@@ -180,12 +183,13 @@
     #playing_field button{
         background: rgba(232, 255, 255, 0.35);
         font-family: 'EB Garamond', serif;
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         border: none;
         border-radius: 3px;
         box-shadow: 1px 1px 8px black;
-        width: 200px;
-        padding: 1.5%;
+        width: 150px;
+        padding: 1%;
+        margin-top: 2%;
     }
     /*кнопки игрового поля при наведении- варианты ответов, остановить, возврат, финиш*/
     #playing_field button:hover{
@@ -199,7 +203,7 @@
     /*блок под фразу "Время:" и счетчик времени*/
     #time{
         font-style: italic;
-        font-size: 2.5rem;
+        font-size: 1.2rem;
         width: 25%;
     }
     /*блок под вопрос (пример)*/
@@ -208,7 +212,7 @@
         font-family: 'Kurale', serif;
         font-weight: 400;
         box-shadow: 0 2px 8px rgba(0,0,0,0.85);
-        font-size: 4.5rem;
+        font-size: 2.5rem;
         margin: 4% auto;
         width: 55%;
         text-align: center;
@@ -217,6 +221,7 @@
     /*блок под ответы на вопрос (пример),блок на фразу - верно/неверно и кнопка "Далее"*/
     #answers,.score_and_next_question{
         height: 4vh !important;
+        flex-wrap: nowrap;
     }
     /*кнопки - варианты ответов*/
     .buttons_answers{
@@ -224,7 +229,7 @@
         margin-right: auto;
         display: block;
         width: 44% !important;
-        font-size: 3rem !important;
+        font-size: 2rem !important;
         padding: 3% !important;
         background: rgba(255, 255, 255, 0.82) !important;
         font-family: 'Kurale', serif !important;
@@ -238,6 +243,7 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+        text-align: center;
     }
     /*кнопка "Завершить"*/
     #finish{
@@ -263,7 +269,7 @@
     /*абзац*/
     p{text-align: center;}
     /*абзац, блок с фразой верно/неверно и балламами, блок на вывод в модальном окне - суммарное количество баллов*/
-    p,#score,#sum_score{font-size: 1.8rem;}
+    p,#score,#sum_score{font-size: 1.2rem;}
     /*модальное окно*/
     .modal {
         display: none;
@@ -305,15 +311,15 @@
     @media screen and (max-width: 992px) {
         /*заголовок (название игры - Тренировочный тест по Математике на время),
        заголовок (сложение, вычитание, деление, умножение)*/
-        h1,h2{font-size: 2.5rem !important;}
+        h1,h2{font-size: 1.3rem !important;}
         /*кнопки - "Начать тест" - на каждый тест своя*/
-        #addition,#subtraction,#multiplication,#division{font-size: 1.6rem;}
+        #addition,#subtraction,#multiplication,#division{font-size: 1rem;}
         /*блок под выбор теста*/
         #menu{flex-direction: column}
         /*блоки по 2 варианта тесте (сложение и умножение/ вычитание и деление)*/
         #menu .col{flex-basis: unset !important;}
         /*контейнер на блоки посередине экрана*/
-        .container{height: 75rem !important;}
+        .container{height: 45rem !important;}
         /*блок под фразу "Время:" и счетчик времени*/
         #time{
             width: 40% !important;
@@ -323,12 +329,31 @@
         /*блок под вопрос (пример)*/
         #test {
             width: 65% !important;
-            font-size: 4.5rem !important;
+            font-size: 2rem;
+        }
+        .row{
+            flex-direction: column;
+        }
+        #playing_field button{
+            width: 100%;
+        }
+        .buttons_return_and_stop{
+            height: 100px;
         }
         /*кнопки - варианты ответов*/
         .buttons_answers {
-            width: 75% !important;
             margin-top: 35%;
+            font-size: 1.5rem !important;
+            padding: 1% !important;
+        }
+        #next_question {
+            margin-top: 12% !important;
+        }
+        #finish {
+            margin-top: 20% !important;
+        }
+        .col-7 {
+            width: 100%;
         }
     }
 </style>
