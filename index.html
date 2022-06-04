@@ -103,7 +103,7 @@
     .container{
         margin-top: 4.5rem;
         margin-bottom: 2rem;
-        width: 45%;
+        width: 50%;
         padding: 2% !important;
         background: rgba(211, 232, 232, 0.7);
         height: 35rem !important;
@@ -125,7 +125,7 @@
     h1{
         text-align: center;
         font-weight: 700;
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-top: 3%;
         font-family: 'EB Garamond', serif;
     }
@@ -133,6 +133,7 @@
     h2{
         text-align: center;
         padding: 5px 0;
+        font-size: 1.5rem;
         margin-bottom: 0 !important;
         font-family: 'Marck Script', cursive;
     }
@@ -206,6 +207,8 @@
         font-size: 1.2rem;
         width: 25%;
     }
+    /*блок под выбор теста*/
+    #menu{margin-top: 5%;}
     /*блок под вопрос (пример)*/
     #test{
         background: rgba(255, 255, 255, 0.82) !important;
@@ -219,7 +222,7 @@
         background: white;
     }
     /*блок под ответы на вопрос (пример),блок на фразу - верно/неверно и кнопка "Далее"*/
-    #answers,.score_and_next_question{
+    #answers, .score_and_next_question{
         height: 4vh !important;
         flex-wrap: nowrap;
     }
@@ -259,19 +262,15 @@
     /*кнопка - "Остановить"*/
     #stop_game{display: block;}
     /*кнопка - "Остановить", кнопка - "Далее"*/
-    #stop_game,#next_question{
-        margin-left: auto;
-    }
+    #stop_game,#next_question{margin-left: auto;}
     /*кнопка - "Далее"*/
-    #next_question{
-        margin-top: 8%;
-    }
+    #next_question{margin-top: 8%;}
     /*абзац*/
     p{text-align: center;}
     /*абзац, блок с фразой верно/неверно и балламами, блок на вывод в модальном окне - суммарное количество баллов*/
     p,#score,#sum_score{font-size: 1.2rem;}
     /*модальное окно*/
-    .modal {
+    .modal{
         display: none;
         position: fixed;
         z-index: 1;
@@ -293,14 +292,14 @@
         width: 55%;
     }
     /*кнопка - "Х"*/
-    .close {
+    .close{
         color: #aaaaaa;
         margin-left: auto;
         font-size: 28px;
         font-weight: bold;
     }
     /*кнопка - "Х" - при наведении и в фокусе*/
-    .close:hover, .close:focus {
+    .close:hover, .close:focus{
         color: #000;
         text-decoration: none;
         cursor: pointer;
@@ -310,16 +309,21 @@
     /***************** АДАПТИВНОСТЬ ********************/
     @media screen and (max-width: 992px) {
         /*заголовок (название игры - Тренировочный тест по Математике на время),
-       заголовок (сложение, вычитание, деление, умножение)*/
-        h1,h2{font-size: 1.3rem !important;}
+        заголовок (сложение, вычитание, деление, умножение)*/
+        h1,h2{font-size: 1.4rem !important;}
+        /*контейнер на блоки посередине экрана*/
+        .container{width: 100%;}
         /*кнопки - "Начать тест" - на каждый тест своя*/
         #addition,#subtraction,#multiplication,#division{font-size: 1rem;}
         /*блок под выбор теста*/
-        #menu{flex-direction: column}
+        #menu{
+            flex-direction: column;
+            margin: 0;
+        }
         /*блоки по 2 варианта тесте (сложение и умножение/ вычитание и деление)*/
         #menu .col{flex-basis: unset !important;}
         /*контейнер на блоки посередине экрана*/
-        .container{height: 45rem !important;}
+        .container{height: 50rem !important;}
         /*блок под фразу "Время:" и счетчик времени*/
         #time{
             width: 40% !important;
@@ -327,33 +331,30 @@
             margin-bottom: 15%;
         }
         /*блок под вопрос (пример)*/
-        #test {
+        #test{
             width: 65% !important;
             font-size: 2rem;
         }
+        /*сетка бутстрап*/
         .row{
             flex-direction: column;
+            flex-wrap: nowrap;
         }
-        #playing_field button{
-            width: 100%;
-        }
-        .buttons_return_and_stop{
-            height: 100px;
-        }
+        /*кнопки игрового поля - варианты ответов, остановить, возврат, финиш*/
+        #playing_field button{width: 100%;}
+        /*кнопки - "Возврат" и "Остановить"*/
+        .buttons_return_and_stop{height: 100px;}
         /*кнопки - варианты ответов*/
-        .buttons_answers {
+        .buttons_answers{
             margin-top: 35%;
             font-size: 1.5rem !important;
             padding: 1% !important;
         }
-        #next_question {
-            margin-top: 12% !important;
-        }
-        #finish {
-            margin-top: 20% !important;
-        }
-        .col-7 {
-            width: 100%;
-        }
+        /*кнопка - "Далее"*/
+        #next_question{margin-top: 18% !important;}
+        /*кнопка "Завершить"*/
+        #finish{margin-top: 20% !important;}
+        /*сетка бутстрап*/
+        .col-7{width: 100%;}
     }
 </style>
